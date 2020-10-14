@@ -3,8 +3,6 @@ import { Button, Input, Select, InputNumber } from 'antd';
 
 import './Dish.css';
 import FormItem from 'antd/lib/form/FormItem';
-import Footer from './Footer';
-
 const { Option } = Select;
 const element = [0];
 
@@ -12,8 +10,8 @@ const Dish = ({ dishes, selected, isInvalid, servings }) => {
   const [select, setSelect] = useState([1]);
   const [errorStatus, setErrorStatus] = useState(true);
   const [num, setNum] = useState(1);
-  const [selectedDishes, setSelectedDishes] = useState([]);
-  const [selectedServing, setSelectedServing] = useState([]);
+  const [selectedDishes] = useState([]);
+  const [selectedServing] = useState([]);
   const [lastSelected, setLastSelected] = useState();
 
   const handleOnchangeDish = (index, e) => {

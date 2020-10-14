@@ -68,7 +68,7 @@ function App() {
   return (
     <div className='App'>
       <div className='container'>
-        <Header step={handleStepClick} />
+        <Header step={step} />
         {step === 1 ? (
           <Meal meal={meal} selectedMeal={handleSelectedMeal} people={handleChangePeople} />
         ) : step === 2 ? (

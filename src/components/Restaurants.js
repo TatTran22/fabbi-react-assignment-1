@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Input, Select, InputNumber } from 'antd';
+import { Input, Select } from 'antd';
 
 import FormItem from 'antd/lib/form/FormItem';
 import './Restaurants.css';

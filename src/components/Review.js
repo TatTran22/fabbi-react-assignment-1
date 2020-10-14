@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './Review.css';
 
 const Review = ({ meal, people, restaurant, dishes, servings }) => {

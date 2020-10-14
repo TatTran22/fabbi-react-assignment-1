@@ -1,25 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Button } from 'antd';
 import './Header.css';
 
-const Header = (props) => {
-  const handleClick = (e) => {
-    props.step(e);
-  };
+const Header = ({ step }) => {
   return (
     <div className='header'>
-      <Button onClick={() => handleClick(1)} type='primary'>
-        Step 1
-      </Button>
-      <Button onClick={() => handleClick(2)} type='primary'>
-        Step 2
-      </Button>
-      <Button onClick={() => handleClick(3)} type='primary'>
-        Step 3
-      </Button>
-      <Button onClick={() => handleClick(4)} type='primary'>
-        Review
-      </Button>
+      <Button type={step === 1 ? 'primary' : 'default'}>Step 1</Button>
+      <Button type={step === 2 ? 'primary' : 'default'}>Step 2</Button>
+      <Button type={step === 3 ? 'primary' : 'default'}>Step 3</Button>
+      <Button type={step === 4 ? 'primary' : 'default'}>Review</Button>
     </div>
   );
 };
