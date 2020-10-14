@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Button } from 'antd';
 import './Footer.css';
 
-const Footer = ({ step, page, meal, restaurant, dishes }) => {
+const Footer = ({ step, page, meal, restaurant, dishes, valid }) => {
   const [isInvalid, setIsInvalid] = useState(false);
   const handleClick = (e) => {
     page(e);
@@ -17,10 +17,10 @@ const Footer = ({ step, page, meal, restaurant, dishes }) => {
       if (!meal || !restaurant) setIsInvalid(true);
       else setIsInvalid(false);
     } else if (step === 3) {
-      if (!meal || !restaurant || !dishes) setIsInvalid(true);
+      if (valid) setIsInvalid(true);
       else setIsInvalid(false);
     }
-  }, [meal, restaurant, dishes, step]);
+  }, [meal, restaurant, valid, step]);
 
   return (
     <div className='footer'>

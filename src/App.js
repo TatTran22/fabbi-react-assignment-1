@@ -4,6 +4,7 @@ import Footer from './components/Footer';
 import Meal from './components/Meal';
 import Restaurants from './components/Restaurants';
 import Dish from './components/Dish';
+import Review from './components/Review';
 import './App.css';
 import data from './data/dishes.json';
 
@@ -14,8 +15,9 @@ function App() {
   const [selectedRestaurant, setSelectedRestaurant] = useState('');
   const [afterStep1, setAfterStep1] = useState([]);
   const [afterStep2, setAfterStep2] = useState([]);
-  const [afterStep3, setAfterStep3] = useState([]);
+  const [afterStep3, setAfterStep3] = useState(true);
   const [selectedDishes, setSelectedDishes] = useState([]);
+  const [servings, setServings] = useState([]);
 
   const removeDuplicates = (data) => {
     return data.filter((value, index) => data.indexOf(value) === index);
@@ -46,7 +48,16 @@ function App() {
 
   const handleSelectedDish = (e) => {
     setSelectedDishes(e);
-    // console.log(selectedDishes);
+    // console.log(e);
+  };
+
+  const handleSelectServings = (e) => {
+    setServings(e);
+  };
+
+  const handleDishError = (e) => {
+    setAfterStep3(e);
+    // console.log(e);
   };
 
   // const handleSelectedServings = (e) => {
@@ -63,9 +74,14 @@ function App() {
         ) : step === 2 ? (
           <Restaurants restaurants={restaurants} selectedRestaurant={handleSelectedRestaurant} r={selectedRestaurant} />
         ) : step === 3 ? (
-          <Dish dishes={afterStep2} selected={handleSelectedDish} />
+          <Dish
+            dishes={afterStep2}
+            selected={handleSelectedDish}
+            isInvalid={handleDishError}
+            servings={handleSelectServings}
+          />
         ) : (
-          ''
+          <Review />
         )}
 
         <Footer
@@ -74,6 +90,7 @@ function App() {
           meal={meal}
           restaurant={selectedRestaurant}
           dishes={selectedDishes}
+          valid={afterStep3}
         />
       </div>
     </div>

@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Input, Select, InputNumber } from 'antd';
 
+import FormItem from 'antd/lib/form/FormItem';
 import './Restaurants.css';
 
 const { Option } = Select;
 
 const Restaurants = ({ restaurants, selectedRestaurant, r }) => {
-  const [error, setError] = useState('');
+  const [error, setError] = useState(true);
   //   console.log(restaurants);
   const handleSelectedRestaurant = (e) => {
     selectedRestaurant(e);
@@ -15,10 +16,10 @@ const Restaurants = ({ restaurants, selectedRestaurant, r }) => {
   useEffect(() => {
     if (!r) {
       // setIsInvalid(true);
-      setError('*Require!');
+      setError(true);
     } else {
       // setIsInvalid(false);
-      setError('');
+      setError(false);
     }
     console.log(r);
     // return () => {
@@ -31,15 +32,21 @@ const Restaurants = ({ restaurants, selectedRestaurant, r }) => {
         Please Select a Restaurant:<div className='error-tool-tip'>{error}</div>
       </label>
       <Input.Group compact>
-        <Select defaultValue={r ? r : ''} onChange={handleSelectedRestaurant}>
-          {restaurants.map((res, index) => {
-            return (
-              <Option key={index} value={res}>
-                {res}
-              </Option>
-            );
-          })}
-        </Select>
+        <FormItem
+          // label={index === 0 ? 'Please Select a Dish:' : ''}
+          hasFeedback
+          validateStatus={error ? 'error' : 'success'}
+        >
+          <Select defaultValue={r ? r : ''} onChange={handleSelectedRestaurant}>
+            {restaurants.map((res, index) => {
+              return (
+                <Option key={index} value={res}>
+                  {res}
+                </Option>
+              );
+            })}
+          </Select>
+        </FormItem>
       </Input.Group>
     </div>
   );

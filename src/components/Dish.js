@@ -3,27 +3,25 @@ import { Button, Input, Select, InputNumber } from 'antd';
 
 import './Dish.css';
 import FormItem from 'antd/lib/form/FormItem';
+import Footer from './Footer';
 
 const { Option } = Select;
 const element = [0];
 
-const Dish = ({ dishes, selected, isInvalid }) => {
+const Dish = ({ dishes, selected, isInvalid, servings }) => {
   const [select, setSelect] = useState([1]);
   const [errorStatus, setErrorStatus] = useState(true);
   const [num, setNum] = useState(1);
   const [selectedDishes, setSelectedDishes] = useState([]);
+  const [selectedServing, setSelectedServing] = useState([]);
   const [lastSelected, setLastSelected] = useState();
-  let selectedServing = [];
-  let ss = [];
-  //   const selected = [];
 
-  //   console.log(dishes);
 
   const handleOnchangeDish = (index, e) => {
     const dh = dishes.filter((d) => d.id === e);
     setLastSelected(dh[0]);
 
-    // console.log(dh);
+  
     if (!selectedDishes.includes(dh[0])) {
       selectedDishes[index] = dh[0];
       console.log(selectedDishes);
@@ -36,8 +34,8 @@ const Dish = ({ dishes, selected, isInvalid }) => {
   };
 
   const handleAddSelectClick = () => {
-    setErrorStatus(true);
     if (num < dishes.length) {
+      setErrorStatus(true);
       setNum(num + 1);
       element.push(num);
     }
@@ -53,8 +51,18 @@ const Dish = ({ dishes, selected, isInvalid }) => {
   );
 
   useEffect(() => {
-    // if (!selectedDishes.includes(lastSelected)) setErrorStatus(false);
-  }, [selectedDishes, lastSelected]);
+    if (!selectedDishes.includes(lastSelected) || !selectedDishes.includes(undefined) || !selectedDishes.length === 0) {
+      setErrorStatus(false);
+      selected(selectedDishes);
+      servings(selectedServing);
+      isInvalid(false);
+    }
+  }, [selectedDishes, lastSelected, selectedServing]);
+
+  useEffect(() => {
+    setErrorStatus(true);
+    isInvalid(true);
+  }, []);
 
   return (
     <div className='dishes'>
@@ -67,6 +75,7 @@ const Dish = ({ dishes, selected, isInvalid }) => {
 
           <Input.Group compact>
             {select.map((s, index) => {
+              selectedServing[index] = 1;
               return (
                 <FormItem
                   // label={index === 0 ? 'Please Select a Dish:' : ''}
@@ -95,7 +104,13 @@ const Dish = ({ dishes, selected, isInvalid }) => {
         <div className='number-servings'>
           <label>Please enter no. of servings:</label>
           {select.map((s, index) => (
-            <InputNumber key={index} min={1} defaultValue={1} onChange={(e) => handleOnchangeServing(index, e)} />
+            <FormItem
+              // label={index === 0 ? 'Please Select a Dish:' : ''}
+              hasFeedback
+              // validateStatus={!selectedDishes[index] || !selectedDishes.includes(lastSelected) ? 'error' : 'success'}
+            >
+              <InputNumber key={index} min={1} defaultValue={1} onChange={(e) => handleOnchangeServing(index, e)} />
+            </FormItem>
           ))}
         </div>
       </div>
