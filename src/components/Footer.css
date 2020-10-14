@@ -1,0 +1,12 @@
+.footer {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.footer .next {
+  margin-left: auto;
+}
+.footer .previous {
+  margin-right: auto;
+}

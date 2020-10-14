@@ -1,0 +1,36 @@
+.dish .ant-select,
+.dish .ant-input-number {
+  min-width: 200px;
+  margin: 1rem 0;
+}
+.dishes {
+  display: flex;
+  flex-direction: column;
+}
+.dish {
+  /* width: 100%; */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.dish .select-restaurant,
+.dish .number-servings {
+  flex: 1 200px;
+}
+
+.dish .number-servings {
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+}
+.dish label {
+  width: 100%;
+  position: absolute;
+  transform: translateY(-3.5rem);
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+.dish label p {
+  margin-bottom: 0;
+}

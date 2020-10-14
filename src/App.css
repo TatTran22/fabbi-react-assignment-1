@@ -1,0 +1,20 @@
+@import '~antd/dist/antd.css';
+
+.App {
+  display: grid;
+  place-items: center;
+  height: 100vh;
+}
+.container {
+  width: clamp(200px, 40vw, 1000px);
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.error-tool-tip {
+  color: red;
+  position: absolute;
+  font-size: 0.7rem;
+}

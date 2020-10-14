@@ -1,0 +1,16 @@
+.meal {
+  width: 100%;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+.meal label {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.meal .ant-select,
+.meal .ant-input-number {
+  min-width: 200px;
+  margin: 1rem 0;
+}
