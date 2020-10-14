@@ -9,6 +9,7 @@ const Footer = ({ step, page, meal, restaurant, dishes, valid, people, servings 
     setIsInvalid(false);
     if (step === 4) {
       const ds = [];
+      // eslint-disable-next-line array-callback-return
       dishes.map((e, i) => {
         let d = {
           dish: '',
@@ -47,7 +48,12 @@ const Footer = ({ step, page, meal, restaurant, dishes, valid, people, servings 
       ) : (
         ''
       )}
-      <Button className='next' onClick={() => handleClick(step + 1)} type='primary' disabled={isInvalid}>
+      <Button
+        className='next'
+        onClick={() => handleClick(step < 4 ? step + 1 : step)}
+        type='primary'
+        disabled={isInvalid}
+      >
         {step < 4 ? 'Next' : 'Submit'}
       </Button>
     </div>

@@ -32,6 +32,7 @@ const Dish = ({ dishes, selected, isInvalid, servings }) => {
   const handleAddSelectClick = () => {
     if (num < dishes.length) {
       setErrorStatus(true);
+      isInvalid(true);
       setNum(num + 1);
       element.push(num);
     }
@@ -53,11 +54,13 @@ const Dish = ({ dishes, selected, isInvalid, servings }) => {
       servings(selectedServing);
       isInvalid(false);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedDishes, lastSelected, selectedServing]);
 
   useEffect(() => {
     setErrorStatus(true);
     isInvalid(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -94,7 +97,11 @@ const Dish = ({ dishes, selected, isInvalid, servings }) => {
               );
             })}
           </Input.Group>
-          <Button type='primary' onClick={handleAddSelectClick}>
+          <Button
+            type='primary'
+            onClick={handleAddSelectClick}
+            disabled={select.length === dishes.length ? true : false}
+          >
             Add
           </Button>
         </div>
