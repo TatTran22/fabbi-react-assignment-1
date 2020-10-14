@@ -1,0 +1,34 @@
+.review-dish {
+  position: absolute;
+}
+
+.review-dishes {
+  width: 100%;
+  display: flex;
+  margin-left: 200px;
+  flex-direction: row;
+
+  /* justify-content: space-between; */
+}
+
+.review-dishes .serving {
+  position: absolute;
+  transform: translateX(150px);
+}
+.review-label {
+  margin: 1rem;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.review-meal,
+.review-people,
+.review-restaurant {
+  width: 100%;
+  position: absolute;
+  /* transform: translateX(); */
+  margin-left: 200px;
+}

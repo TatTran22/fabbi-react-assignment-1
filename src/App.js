@@ -11,6 +11,7 @@ import data from './data/dishes.json';
 function App() {
   const [step, setStep] = useState(1);
   const [meal, setMeal] = useState('');
+  const [numPeople, setNumPeople] = useState(1);
   const [restaurants, setRestaurants] = useState([]);
   const [selectedRestaurant, setSelectedRestaurant] = useState('');
   const [afterStep1, setAfterStep1] = useState([]);
@@ -39,6 +40,10 @@ function App() {
     setRestaurants(r);
   };
 
+  const handleChangePeople = (e) => {
+    setNumPeople(e);
+  };
+
   const handleSelectedRestaurant = (e) => {
     setSelectedRestaurant(e);
     const result2 = afterStep1.filter((meal) => meal.restaurant.includes(e));
@@ -60,17 +65,12 @@ function App() {
     // console.log(e);
   };
 
-  // const handleSelectedServings = (e) => {
-  //   setServings(e);
-  // };
-
-  console.log(`Meal: ${meal}, Restaurant: ${selectedRestaurant}, Dishes: ${selectedDishes}`);
   return (
     <div className='App'>
       <div className='container'>
         <Header step={handleStepClick} />
         {step === 1 ? (
-          <Meal meal={meal} selectedMeal={handleSelectedMeal} />
+          <Meal meal={meal} selectedMeal={handleSelectedMeal} people={handleChangePeople} />
         ) : step === 2 ? (
           <Restaurants restaurants={restaurants} selectedRestaurant={handleSelectedRestaurant} r={selectedRestaurant} />
         ) : step === 3 ? (
@@ -81,7 +81,13 @@ function App() {
             servings={handleSelectServings}
           />
         ) : (
-          <Review />
+          <Review
+            meal={meal}
+            people={numPeople}
+            restaurant={selectedRestaurant}
+            dishes={selectedDishes}
+            servings={servings}
+          />
         )}
 
         <Footer
@@ -90,7 +96,9 @@ function App() {
           meal={meal}
           restaurant={selectedRestaurant}
           dishes={selectedDishes}
+          people={numPeople}
           valid={afterStep3}
+          servings={servings}
         />
       </div>
     </div>

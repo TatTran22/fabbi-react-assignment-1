@@ -16,21 +16,19 @@ const Dish = ({ dishes, selected, isInvalid, servings }) => {
   const [selectedServing, setSelectedServing] = useState([]);
   const [lastSelected, setLastSelected] = useState();
 
-
   const handleOnchangeDish = (index, e) => {
     const dh = dishes.filter((d) => d.id === e);
     setLastSelected(dh[0]);
 
-  
     if (!selectedDishes.includes(dh[0])) {
       selectedDishes[index] = dh[0];
-      console.log(selectedDishes);
+      // console.log(selectedDishes);
     }
   };
 
   const handleOnchangeServing = (index, e) => {
     selectedServing[index] = e;
-    console.log(selectedServing);
+    // console.log(selectedServing);
   };
 
   const handleAddSelectClick = () => {
@@ -78,6 +76,7 @@ const Dish = ({ dishes, selected, isInvalid, servings }) => {
               selectedServing[index] = 1;
               return (
                 <FormItem
+                  key={index}
                   // label={index === 0 ? 'Please Select a Dish:' : ''}
                   hasFeedback
                   validateStatus={

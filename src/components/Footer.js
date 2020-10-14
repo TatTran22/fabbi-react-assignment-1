@@ -2,11 +2,24 @@ import React, { useState, useEffect } from 'react';
 import { Button } from 'antd';
 import './Footer.css';
 
-const Footer = ({ step, page, meal, restaurant, dishes, valid }) => {
+const Footer = ({ step, page, meal, restaurant, dishes, valid, people, servings }) => {
   const [isInvalid, setIsInvalid] = useState(false);
   const handleClick = (e) => {
     page(e);
     setIsInvalid(false);
+    if (step === 4) {
+      const ds = [];
+      dishes.map((e, i) => {
+        let d = {
+          dish: '',
+          serving: 0,
+        };
+        d.dish = e.name;
+        d.serving = servings[i];
+        ds.push(d);
+      });
+      console.log(`Meal: ${meal}\nPeople: ${people}\nRestaurant: ${restaurant}\nDishes: ${ds}`);
+    }
   };
 
   useEffect(() => {
@@ -17,6 +30,9 @@ const Footer = ({ step, page, meal, restaurant, dishes, valid }) => {
       if (!meal || !restaurant) setIsInvalid(true);
       else setIsInvalid(false);
     } else if (step === 3) {
+      if (valid) setIsInvalid(true);
+      else setIsInvalid(false);
+    } else if (step === 4) {
       if (valid) setIsInvalid(true);
       else setIsInvalid(false);
     }

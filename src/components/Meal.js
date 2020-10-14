@@ -6,32 +6,24 @@ import './Meal.css';
 
 const { Option } = Select;
 
-const Meal = ({ selectedMeal, meal }) => {
+const Meal = ({ selectedMeal, meal, people }) => {
   const meals = ['breakfast', 'lunch', 'dinner'];
-  // const [isInvalid, setIsInvalid] = useState(false);
   const [error, setError] = useState('');
 
   const handleOnchangePeople = (value) => {
-    console.log(`Number people: ${value}`);
+    people(value);
   };
 
   const handleSelectMeal = (e) => {
-    // setIsInvalid(false);
     selectedMeal(e);
   };
 
   useEffect(() => {
     if (!meal) {
-      // setIsInvalid(true);
       setError(true);
     } else {
-      // setIsInvalid(false);
       setError(false);
     }
-    console.log(meal);
-    // return () => {
-    //   cleanup
-    // }
   }, [meal]);
 
   return (
@@ -58,7 +50,7 @@ const Meal = ({ selectedMeal, meal }) => {
       </Input.Group>
 
       <label>Please Enter Number of people</label>
-      <InputNumber min={1} max={10} defaultValue={3} onChange={handleOnchangePeople} />
+      <InputNumber min={1} max={10} defaultValue={1} onChange={handleOnchangePeople} />
     </div>
   );
 };

@@ -21,10 +21,7 @@ const Restaurants = ({ restaurants, selectedRestaurant, r }) => {
       // setIsInvalid(false);
       setError(false);
     }
-    console.log(r);
-    // return () => {
-    //   cleanup
-    // }
+    // console.log(r);
   }, [r]);
   return (
     <div className='restaurant'>
